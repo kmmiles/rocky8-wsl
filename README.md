@@ -1,4 +1,4 @@
-# docker-rocky8-wsl
+# rocky8-wsl
 
 minimal rocky8 distro for wsl2.
 
