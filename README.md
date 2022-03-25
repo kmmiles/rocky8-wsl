@@ -17,3 +17,7 @@ wsl --unregister rocky8
 wsl --import rocky8 "$env:USERPROFILE\WSL2\systems\rocky8" "$env:USERPROFILE\WSL2\sources\rocky8-wsl-container.tar"
 wsl -d rocky8
 ```
+
+```cmd
+powershell.exe -noprofile -executionpolicy bypass -file .\install.ps1
+```
