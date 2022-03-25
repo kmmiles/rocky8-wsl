@@ -1,25 +1,41 @@
 # rocky8-wsl
-
 [![build](https://github.com/kmmiles/rocky8-wsl/actions/workflows/build.yml/badge.svg)](https://github.com/kmmiles/rocky8-wsl/actions/workflows/build.yml)
 [![release](https://github.com/kmmiles/rocky8-wsl/actions/workflows/release.yml/badge.svg)](https://github.com/kmmiles/rocky8-wsl/actions/workflows/release.yml)
-
-
 rocky8 distro for wsl2.
 
-minimal base + `podman` + `python3` + "wsl" user with `sudo` access.
+minimal rocky8 + `podman` + `python3` + "wsl" user with `sudo` access.
 
-# instructions
+## Install
 
-build and export: `./bin/build && ./bin/export`
+- Download and extract the release zip.
+- Run the `install.bat` script.
 
-import as wsl distro (adjust paths as necessary):
+NOTE: If `rocky8` distro already exists, it will be **REMOVED**.
+The script will warn you before doing so.
 
-```powershell
-wsl --unregister rocky8
-wsl --import rocky8 "$env:USERPROFILE\WSL2\systems\rocky8" "$env:USERPROFILE\WSL2\sources\rocky8-wsl-container.tar"
-wsl -d rocky8
+## Build it yourself
+
+You'll need `docker` or `podman`.
+
+- Check out the source code and run `./bin/release`
+- Copy the zip to windows, extract it, and run `install.bat`
+
+*If you've got Docker, but can't run `bash` scripts, you can still manage.
+You just need to copy the process from `./bin/build` and `./bin/export`.*
+
+## Make your own custom distro
+
+You can either:
+
+- Fork this repo and add your own modifications.
+
+- Pull this image into your own `Dockerfile` i.e.
+
+```
+FROM ghcr.io/kmmiles/rocky8-wsl:main
 ```
 
-```cmd
-powershell.exe -noprofile -executionpolicy bypass -file .\install.ps1
-```
+## How it works
+
+WSL2 distributions are really just containers. We build a container of our liking with `docker`, then export the rootfs as a tarball.
+Then this tarball can be imported as a WSL distribution with `wsl.exe --import`.
