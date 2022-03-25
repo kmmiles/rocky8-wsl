@@ -8,7 +8,7 @@ minimal rocky8 + `podman` + `python3` + "wsl" user with `sudo` access.
 
 ## Install
 
-- Download and extract the release zip.
+- Download and extract the [release](https://github.com/kmmiles/rocky8-wsl/releases) zip.
 - Run the `install.bat` script.
 
 NOTE: If `rocky8` distro already exists, it will be **REMOVED**.
