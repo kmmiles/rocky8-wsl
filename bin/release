@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/profile.sh
+tag_name="${GITHUB_REF_NAME:-dev}"
+release_name="rocky8-wsl-${tag_name}"
+
+# build container, export rootfs, and create `dist/rocky8-wsl-version.zip`
+# when unzipping, i want a toplevel directory named `rocky8-wsl-version`.
+# could read the `zip` manpage, but too lazy.
+# TODO: i want a powershell script in the zip, which installs it as a distro.
+set -ex; \
+  "${root_dir:-}"/bin/build && \
+  "${root_dir:-}"/bin/export && \
+  mv "${root_dir}/dist" "${root_dir}/${release_name}" && \
+  cd "${root_dir}" && \
+  zip -rm "${release_name}.zip" "${release_name}" && \
+  mkdir -p "${root_dir}/dist" && \
+  mv "${release_name}".zip ./dist
