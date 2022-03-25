@@ -4,6 +4,8 @@ rocky8 distro for wsl2.
 
 minimal base + `podman` + `python3` + "wsl" user with `sudo` access.
 
+[![Docker](https://github.com/kmmiles/rocky8-wsl/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/kmmiles/rocky8-wsl/actions/workflows/docker-publish.yml)
+
 # instructions
 
 build and export: `./bin/build && ./bin/export`
