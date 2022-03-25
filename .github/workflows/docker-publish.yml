@@ -94,7 +94,7 @@ jobs:
 
       # do the build
       - name: Build and export image
-        run: ./bin/build && ./bin/export
+        run: ./bin/build && ./bin/export && echo ${{ github.sha }} > dist/release.txt
         shell: bash
 
       # upload artifact
@@ -102,3 +102,14 @@ jobs:
         with:
           name: dist
           path: dist/
+
+      # create release
+      - name: Test
+        run: cat dist/release.txt
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            dist/release.txt
+            dist/rocky8-wsl-container.tar

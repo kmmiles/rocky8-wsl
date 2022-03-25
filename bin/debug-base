@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/profile.sh
+
+docker run -it --rm "rockylinux/rockylinux:8.5" sh

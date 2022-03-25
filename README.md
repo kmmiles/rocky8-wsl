@@ -1,22 +1,17 @@
 # rocky8-wsl
 
-Minimal rocky8 distro for wsl2.
+rocky8 distro for wsl2.
 
- - boots as user `wsl` with `sudo` access
- - includes bind mount, allowing fs access from other distros (`/mnt/wsl/instances/rocky8`)
- - includes `git` and `python3`
+minimal base + `podman` + `python3` + "wsl" user with `sudo` access.
 
 # instructions
 
-Builds `dist/rocky8-wsl-container.tar`:
+build and export: `./bin/build && ./bin/export`
 
-```bash
-./bin/build && ./bin/export
-```
-
-Import as WSL distro (adjust paths as necessary):
+import as wsl distro (adjust paths as necessary):
 
 ```powershell
+wsl --unregister rocky8
 wsl --import rocky8 "$env:USERPROFILE\WSL2\systems\rocky8" "$env:USERPROFILE\WSL2\sources\rocky8-wsl-container.tar"
 wsl -d rocky8
 ```
